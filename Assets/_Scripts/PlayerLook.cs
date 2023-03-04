@@ -33,5 +33,9 @@ public class PlayerLook : MonoBehaviour
 
         // Set the velocity of the bullet to be in the direction the player is facing
         bullet.GetComponent<Rigidbody>().velocity = direction.normalized * -50f;
+
+        // Set the bullet tag to "Bullet"
+        bullet.tag = "Bullet";
     }
+
 }
