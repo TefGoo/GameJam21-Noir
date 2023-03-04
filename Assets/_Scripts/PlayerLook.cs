@@ -29,9 +29,9 @@ public class PlayerLook : MonoBehaviour
 
         // Get the direction the player is facing (the direction of the mouse)
         Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - bullet.transform.position;
-        direction.z = 0;
+        direction.y = 0;
 
         // Set the velocity of the bullet to be in the direction the player is facing
-        bullet.GetComponent<Rigidbody>().velocity = direction.normalized * 10f;
+        bullet.GetComponent<Rigidbody>().velocity = direction.normalized * -50f;
     }
 }
