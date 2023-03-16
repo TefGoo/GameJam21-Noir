@@ -10430,6 +10430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+--- !u!54 &1263386394 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2476092873525884275, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
+  m_PrefabInstance: {fileID: 2476092872857270787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2476092872857270787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10437,6 +10442,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2476092872349969408, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
+      propertyPath: _rb
+      value: 
+      objectReference: {fileID: 1263386394}
+    - target: {fileID: 2476092872349969408, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
+      propertyPath: _speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2476092872349969409, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -10484,6 +10497,22 @@ PrefabInstance:
     - target: {fileID: 2476092872349969410, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476092873525884274, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476092873525884274, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476092873525884275, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476092873525884275, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2476092873525884278, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
       propertyPath: cam

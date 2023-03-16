@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float moveSpeed = 5f;
-    public Rigidbody rb;
+    [SerializeField] private float _speed = 1;
+    [SerializeField] private Rigidbody _rb;
+    [SerializeField] private float _jumpForce = 300;
 
-    // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        var vel = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _speed;
+        vel.y = _rb.velocity.y;
+        _rb.velocity = vel;
 
-        Vector3 movement = new Vector3(horizontal, 0f, vertical).normalized;
-        rb.MovePosition(rb.position + transform.TransformDirection(movement) * moveSpeed * Time.fixedDeltaTime);
+        if (Input.GetKeyDown(KeyCode.Space)) _rb.AddForce(Vector3.up * _jumpForce);
     }
 }
