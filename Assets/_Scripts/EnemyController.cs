@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
         else
         {
@@ -43,6 +43,7 @@ public class EnemyController : MonoBehaviour
             Invoke("ResetMaterial", 0.1f);
         }
     }
+
 
     void ResetMaterial()
     {
