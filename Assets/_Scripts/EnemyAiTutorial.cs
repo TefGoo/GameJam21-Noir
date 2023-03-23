@@ -28,12 +28,15 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Character").transform;
+        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
+        // Update player position
+        player = GameObject.Find("Player").transform;
+
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -42,6 +45,7 @@ public class EnemyAiTutorial : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
+
 
     private void Patroling()
     {
@@ -78,20 +82,27 @@ public class EnemyAiTutorial : MonoBehaviour
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
-
         if (!alreadyAttacked)
         {
             ///Attack code here
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            Vector3 direction = (player.position - transform.position).normalized;
+            rb.velocity = direction * 32f;
             ///End of attack code
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+
+        // Look at the player's position
+        transform.LookAt(player.position);
+
+        // Ensure that the enemy is upright
+        transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
     }
+
+
+
     private void ResetAttack()
     {
         alreadyAttacked = false;

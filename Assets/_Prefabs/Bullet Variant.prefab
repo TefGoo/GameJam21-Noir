@@ -12,6 +12,10 @@ PrefabInstance:
       value: Bullet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1198035992255610029, guid: 992830cfd69576c4c9dad7fa837d5148, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198035992255610029, guid: 992830cfd69576c4c9dad7fa837d5148, type: 3}
       propertyPath: m_TagString
       value: EnemyBullet
       objectReference: {fileID: 0}

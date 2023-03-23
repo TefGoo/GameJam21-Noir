@@ -1,150 +1,61 @@
-using UnityEngine;
-using UnityEngine.Events;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
 
-    public enum SpawnState { SPAWNING, WAITING, COUNTING };
-
-    [System.Serializable]
-    public class Wave
-    {
-        public string name;
-        public UnityEvent OnWaveEnd;
-        public GameObject enemy;
-        public int count;
-        public float rate;
-        public bool shouldWaitWaveClear = true;
-    }
-
-    public Wave[] waves;
-    private int nextWave = 0;
-    private int currentWave = 0;
-
-    public int NextWave
-    {
-        get { return nextWave + 1; }
-    }
-
+    public GameObject enemyPrefab;
+    public int numEnemiesPerRound = 10;
+    public float spawnInterval = 1f;
     public Transform[] spawnPoints;
-    public float timeBetweenWaves = 5f;
-    public UnityEvent OnWaveEnd;
+    public int numRounds = 5;
 
-    private float waveCountdown;
-    public float WaveCountdown
+    private int currentRound = 0;
+    private int numEnemiesRemaining = 0;
+
+    private void Start()
     {
-        get { return waveCountdown; }
+        StartNewRound();
     }
 
-    private float searchCountdown = 1f;
-
-    private SpawnState state = SpawnState.COUNTING;
-    public SpawnState State
+    private IEnumerator SpawnEnemies()
     {
-        get { return state; }
-    }
-
-    void Start()
-    {
-        if (spawnPoints.Length == 0)
+        for (int i = 0; i < numEnemiesPerRound; i++)
         {
-            Debug.LogError("No spawn points referenced.");
+            int spawnIndex = Random.Range(0, spawnPoints.Length);
+            Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
+            numEnemiesRemaining++;
+            yield return new WaitForSeconds(spawnInterval);
         }
-        waveCountdown = timeBetweenWaves;
     }
 
-    void Update()
+    private void Update()
     {
-
-        if (state == SpawnState.WAITING)
+        if (numEnemiesRemaining == 0)
         {
-            if (!EnemyIsAlive() || !waves[currentWave].shouldWaitWaveClear)
-            {
-                WaveCompleted(waves[currentWave]);
-            }
-            else
-            {
-                return;
-            }
+            StartCoroutine(StartNextRound());
         }
+    }
 
-        if (waveCountdown <= 0 || nextWave == 0)
+    private IEnumerator StartNextRound()
+    {
+        currentRound++;
+        if (currentRound > numRounds)
         {
-            if (state != SpawnState.SPAWNING)
-            {
-                StartCoroutine(SpawnWave(waves[nextWave]));
-            }
+            SceneManager.LoadScene("Victory");
         }
         else
         {
-            waveCountdown -= Time.deltaTime;
+            StartNewRound();
         }
+        yield return null;
     }
 
-    void WaveCompleted(Wave _wave)
+    private void StartNewRound()
     {
-        Debug.Log("Wave Completed!");
-
-        _wave.OnWaveEnd.Invoke();
-
-        state = SpawnState.COUNTING;
-        waveCountdown = timeBetweenWaves;
-
-        if (nextWave + 1 > waves.Length - 1)
-        {
-
-            OnWaveEnd.Invoke();
-            Debug.Log("ALL WAVES COMPLETE! Looping...");
-            this.enabled = false;
-        }
-        else
-        {
-            nextWave++;
-            currentWave++;
-        }
+        numEnemiesRemaining = 0;
+        StartCoroutine(SpawnEnemies());
     }
-
-    bool EnemyIsAlive()
-    {
-        searchCountdown -= Time.deltaTime;
-        if (searchCountdown <= 0f)
-        {
-            searchCountdown = 1f;
-            if (GameObject.FindGameObjectWithTag("Enemy") == null)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    IEnumerator SpawnWave(Wave _wave)
-    {
-        Debug.Log("Spawning Wave: " + _wave.name);
-
-        state = SpawnState.SPAWNING;
-
-        for (int i = 0; i < _wave.count; i++)
-        {
-            SpawnEnemy(_wave.enemy);
-            yield return new WaitForSeconds(1f / _wave.rate);
-        }
-
-        state = SpawnState.WAITING;
-
-        yield break;
-    }
-
-    void SpawnEnemy(GameObject _enemy)
-    {
-        Debug.Log("Spawning Enemy: " + _enemy.name);
-
-        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-        GameObject enemyObject = Instantiate(_enemy, _sp.position, _sp.rotation);
-
-        //Spawn attributes here
-    }
-
 }

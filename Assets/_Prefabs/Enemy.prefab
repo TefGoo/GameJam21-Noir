@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8125633773348771094}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,9 +48,9 @@ GameObject:
   - component: {fileID: 8125633774115972548}
   - component: {fileID: 5269000845093013533}
   - component: {fileID: 7061614486110975244}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &8125633774115972548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 5269000845093013533}
-  player: {fileID: 2476092872349969409, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
+  player: {fileID: 1519695145362455617, guid: d8e23b25c233eec45a2beace14279b3e, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -211,7 +211,7 @@ MonoBehaviour:
   walkPointRange: 5
   timeBetweenAttacks: 0.5
   projectile: {fileID: 2766420182288801088, guid: 78afd16bc4828964d9a97685edf9b2f4, type: 3}
-  sightRange: 20
+  sightRange: 150
   attackRange: 12
-  playerInSightRange: 0
+  playerInSightRange: 1
   playerInAttackRange: 0
