@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
     public Material damageMaterial;
+    public GameObject spritePrefab;
 
     private Renderer rend;
     private Material originalMaterial;
@@ -32,6 +33,10 @@ public class EnemyController : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
+            // Spawn a sprite at the enemy's position
+            Instantiate(spritePrefab, transform.position, Quaternion.identity);
+
+            // Destroy the enemy game object
             Destroy(transform.parent.gameObject);
         }
         else
