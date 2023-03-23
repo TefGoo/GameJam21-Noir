@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -14,10 +15,16 @@ public class EnemySpawner : MonoBehaviour
     public int enemiesRemaining; // Number of enemies remaining in the current wave
     public float timeUntilNextWave; // Time until the next wave begins
     public bool spawningEnemies = false; // Whether enemies are currently being spawned
+    public TMP_Text currentWaveText; // Reference to the UI Text object for displaying the current wave
+    public TMP_Text enemiesRemainingText; // Reference to the UI Text object for displaying the enemies remaining
+    public bool waveInProgress = false; // Whether a wave is currently in progress
+
+
 
     void Start()
     {
         timeUntilNextWave = timeBetweenWaves;
+        waveInProgress = false;
     }
 
     void Update()
@@ -42,6 +49,23 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            // Check if the current wave is in progress
+            if (enemiesRemaining > 0)
+            {
+                waveInProgress = true;
+            }
+            else
+            {
+                spawningEnemies = false;
+                waveInProgress = false;
+            }
+        }
+
+    // Update the UI Text objects with the current wave and enemies remaining
+    currentWaveText.text = "Wave: " + currentWave.ToString();
+        enemiesRemainingText.text = "Enemies Remaining: " + enemiesRemaining.ToString();
     }
 
     void SpawnEnemy()
@@ -52,6 +76,8 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
         // Decrement the number of enemies remaining
         enemiesRemaining--;
+        // Set the wave in progress when an enemy is spawned
+        waveInProgress = true;
         if (enemiesRemaining == 0)
         {
             // Stop spawning enemies when the wave is finished
