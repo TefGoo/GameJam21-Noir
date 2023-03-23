@@ -13039,12 +13039,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8125633773348771095, guid: 5e68aef889975c847824e194c7becf1d, type: 3}
-  numEnemiesPerRound: 3
   spawnInterval: 5
+  enemiesPerWave: 10
+  timeBetweenWaves: 10
   spawnPoints:
   - {fileID: 1088762405}
   - {fileID: 1340873907}
-  numRounds: 1
+  currentWave: 0
+  enemiesRemaining: 0
+  timeUntilNextWave: 0
+  spawningEnemies: 0
 --- !u!4 &1194306655
 Transform:
   m_ObjectHideFlags: 0
@@ -15104,6 +15108,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 640208414117724845, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 986921317073451314, guid: f52eaff65c0404a4cbf3f62dda6ddcd4, type: 3}
       propertyPath: m_Layer
       value: 0
