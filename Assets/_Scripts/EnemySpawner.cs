@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
     // Update the UI Text objects with the current wave and enemies remaining
-    currentWaveText.text = "Wave: " + currentWave.ToString();
+    currentWaveText.text = "Danger: " + currentWave.ToString();
         enemiesRemainingText.text = "Enemies Remaining: " + enemiesRemaining.ToString();
     }
 
