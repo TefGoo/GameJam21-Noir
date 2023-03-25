@@ -164,6 +164,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   damageMaterial: {fileID: 2100000, guid: 11d05abcc0d23b54a9a7dd9856fd5e87, type: 2}
+  spritePrefab: {fileID: 5927953366928885594, guid: 922b1337cb1689e40ac3b16b6490ab60, type: 3}
+  spritePrefabs:
+  - {fileID: 5927953366928885594, guid: 922b1337cb1689e40ac3b16b6490ab60, type: 3}
+  - {fileID: 5927953366928885594, guid: 048759a38d0d4c74a885d8fb51d6bc38, type: 3}
+  - {fileID: 5927953366928885594, guid: cdbe91fc3f5f9b04c8984947e5adcfc2, type: 3}
 --- !u!195 &5269000845093013533
 NavMeshAgent:
   m_ObjectHideFlags: 0

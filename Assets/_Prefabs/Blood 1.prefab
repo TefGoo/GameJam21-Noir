@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5927953366928885588}
   - component: {fileID: 5927953366928885589}
   m_Layer: 11
-  m_Name: Blood
+  m_Name: Blood 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2c8ec426f98eee742ba1948c34396541, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fbd7c3b2b03955442a28d9cdadcf27f8, type: 3}
   m_Color: {r: 0.41509432, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

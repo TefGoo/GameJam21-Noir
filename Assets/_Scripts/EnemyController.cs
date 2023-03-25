@@ -27,14 +27,21 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public List<GameObject> spritePrefabs;
+
     void TakeDamage(float damage)
     {
         currentHealth -= damage;
 
         if (currentHealth <= 0f)
         {
-            // Spawn a sprite at the enemy's position
-            Instantiate(spritePrefab, transform.position, Quaternion.identity);
+            // Select a random sprite prefab from the list
+            int index = Random.Range(0, spritePrefabs.Count);
+            GameObject selectedSpritePrefab = spritePrefabs[index];
+
+            // Spawn the selected sprite at the enemy's position with its own rotation, and rotate it by 90 degrees around the X-axis
+            GameObject spriteObject = Instantiate(selectedSpritePrefab, transform.position, Quaternion.identity);
+            spriteObject.transform.Rotate(90f, 0f, 0f);
 
             // Destroy the enemy game object
             Destroy(transform.parent.gameObject);
