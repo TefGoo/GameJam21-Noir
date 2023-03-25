@@ -7,12 +7,16 @@ public class PlayerLook : MonoBehaviour
     public Camera cam;
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
+    public AudioSource bulletSound;
+    public float shootDelay = 1f;
+    private float lastShotTime = 0f;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.time > lastShotTime + shootDelay)
         {
             Shoot();
+            lastShotTime = Time.time;
         }
 
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.transform.position.y));
@@ -22,10 +26,14 @@ public class PlayerLook : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360f);
     }
 
+
     void Shoot()
     {
         // Instantiate a new bullet at the bullet spawn point
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+
+        // Play the bullet sound
+        bulletSound.Play();
 
         // Get the direction the player is facing (the direction of the mouse)
         Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - bullet.transform.position;
