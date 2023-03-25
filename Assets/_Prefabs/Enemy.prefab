@@ -169,6 +169,7 @@ MonoBehaviour:
   - {fileID: 5927953366928885594, guid: 922b1337cb1689e40ac3b16b6490ab60, type: 3}
   - {fileID: 5927953366928885594, guid: 048759a38d0d4c74a885d8fb51d6bc38, type: 3}
   - {fileID: 5927953366928885594, guid: cdbe91fc3f5f9b04c8984947e5adcfc2, type: 3}
+  scoreManager: {fileID: 1697442136107521326, guid: 0d614a6f535fdb44798fbc0d42458d82, type: 3}
 --- !u!195 &5269000845093013533
 NavMeshAgent:
   m_ObjectHideFlags: 0

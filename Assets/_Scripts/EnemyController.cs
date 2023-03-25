@@ -63,4 +63,14 @@ public class EnemyController : MonoBehaviour
         rend.material = originalMaterial;
     }
 
+    public ScoreManager scoreManager;
+    private void OnDestroy()
+    {
+        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore();
+        }
+    }
 }
+
