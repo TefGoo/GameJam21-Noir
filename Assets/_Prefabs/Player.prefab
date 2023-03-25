@@ -179,6 +179,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  healthSprites:
+  - {fileID: 21300000, guid: ccccf8f0fc565b146870698f15844dce, type: 3}
+  - {fileID: 21300000, guid: f7162baca6dd49f40ac60731dde60075, type: 3}
+  - {fileID: 21300000, guid: 3123346666a52eb4e993b3ff1ab5990f, type: 3}
+  - {fileID: 21300000, guid: d2eba064fc9d1a94f999ab837f0bc65b, type: 3}
+  - {fileID: 21300000, guid: 518a5362636b4e6479d33b70ef1400aa, type: 3}
+  healthRenderer: {fileID: 0}
+  healthBarSlider: {fileID: 0}
 --- !u!136 &8713421856512211654
 CapsuleCollider:
   m_ObjectHideFlags: 0

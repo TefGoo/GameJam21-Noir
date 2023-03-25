@@ -9,18 +9,28 @@ public class PlayerController : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
 
+    public Sprite[] healthSprites; // An array of sprites to display the player's health
+
     public Image[] healthImages; // An array of Image components to display the player's health
+
+    public Slider healthBarSlider; // The slider component to display the player's health as a bar
 
     private void Start()
     {
         currentHealth = maxHealth;
+
+        // Set the maximum value of the health bar slider to the player's maximum health
+        healthBarSlider.maxValue = maxHealth;
+
+        // Set the initial value of the health bar slider to the player's current health
+        healthBarSlider.value = currentHealth;
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
-            TakeDamage(5f);
+            TakeDamage(10f);
         }
     }
 
@@ -32,6 +42,9 @@ public class PlayerController : MonoBehaviour
         {
             GameOver();
         }
+
+        // Update the health bar slider value to reflect the player's current health
+        healthBarSlider.value = currentHealth;
 
         UpdateHealthUI();
     }

@@ -39,9 +39,8 @@ public class EnemyController : MonoBehaviour
             int index = Random.Range(0, spritePrefabs.Count);
             GameObject selectedSpritePrefab = spritePrefabs[index];
 
-            // Spawn the selected sprite at the enemy's position with its own rotation, and rotate it by 90 degrees around the X-axis
-            GameObject spriteObject = Instantiate(selectedSpritePrefab, transform.position, Quaternion.identity);
-            spriteObject.transform.Rotate(90f, 0f, 0f);
+            // Spawn the selected sprite at the enemy's position with a random rotation around the Z-axis, and rotate it by 90 degrees around the X-axis
+            GameObject spriteObject = Instantiate(selectedSpritePrefab, transform.position, Quaternion.Euler(90f, 0f, Random.Range(0f, 360f)));
 
             // Destroy the enemy game object
             Destroy(transform.parent.gameObject);
@@ -55,6 +54,7 @@ public class EnemyController : MonoBehaviour
             Invoke("ResetMaterial", 0.1f);
         }
     }
+
 
 
     void ResetMaterial()
