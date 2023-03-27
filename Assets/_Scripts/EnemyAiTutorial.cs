@@ -12,6 +12,8 @@ public class EnemyAiTutorial : MonoBehaviour
 
     public float health;
 
+    public AudioSource enemyShot;
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -89,6 +91,8 @@ public class EnemyAiTutorial : MonoBehaviour
             Vector3 direction = (player.position - transform.position).normalized;
             rb.velocity = direction * 32f;
             ///End of attack code
+
+            enemyShot.Play();
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
