@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource backgroundMusic; // Assign the background music audio source in the inspector
     public AudioSource gameOverSound; // Assign the Game Over sound audio source in the inspector
 
+    private bool isGameOver = false; // Check if the game is over
 
     private void Start()
     {
@@ -66,8 +67,24 @@ public class PlayerController : MonoBehaviour
         // Mute the background music and play the Game Over sound
         backgroundMusic.mute = true;
         gameOverSound.Play();
+        isGameOver = true; // Set the game over flag to true
     }
 
+    public void RestartLevel()
+    {
+        // Unmute the background music and stop the Game Over sound
+        backgroundMusic.mute = false;
+        gameOverSound.Stop();
+
+        // Reset the game over flag to false
+        isGameOver = false;
+
+        // Unpause the game time
+        Time.timeScale = 1f;
+
+        // Reload the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     void UpdateHealthUI()
     {
