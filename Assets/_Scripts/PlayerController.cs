@@ -41,6 +41,19 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(10f);
         }
+        else if (collision.gameObject.CompareTag("Heal"))
+        {
+            currentHealth += 20f; // Increase health by 20 points
+            currentHealth = Mathf.Min(currentHealth, maxHealth); // Clamp health to maximum value
+
+            // Update the health bar slider value to reflect the player's current health
+            healthBarSlider.value = currentHealth;
+
+            UpdateHealthUI();
+
+            // Destroy the healing object
+            Destroy(collision.gameObject);
+        }
     }
 
     void TakeDamage(float damage)
