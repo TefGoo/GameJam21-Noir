@@ -15,6 +15,14 @@ public class PlayerController : MonoBehaviour
 
     public Slider healthBarSlider; // The slider component to display the player's health as a bar
 
+    public GameObject gameOverMenu; // Assign the UI menu object in the inspector
+
+    public GameObject GameMenu; // Assign the UI menu object in the inspector
+
+    public AudioSource backgroundMusic; // Assign the background music audio source in the inspector
+    public AudioSource gameOverSound; // Assign the Game Over sound audio source in the inspector
+
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -51,8 +59,15 @@ public class PlayerController : MonoBehaviour
 
     void GameOver()
     {
-        SceneManager.LoadScene("GameOver");
+        gameOverMenu.SetActive(true); // Activate the Game Over menu
+        GameMenu.SetActive(false); // Deactivate the Pause menu                                 
+        Time.timeScale = 0f; // Stop game time
+
+        // Mute the background music and play the Game Over sound
+        backgroundMusic.mute = true;
+        gameOverSound.Play();
     }
+
 
     void UpdateHealthUI()
     {

@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
     private int score;
     public delegate void ScoreUpdatedDelegate(int newScore);
     public static event ScoreUpdatedDelegate OnScoreUpdated;
+    public TextMeshProUGUI scoreTextGo;
 
     private void Start()
     {
@@ -35,10 +36,6 @@ public class ScoreManager : MonoBehaviour
     private void UpdateScoreText()
     {
         scoreText.text = "Score: " + score.ToString();
-    }
-
-    public void LoadNextScene()
-    {
-        SceneManager.LoadScene("NextScene"); // Load the next scene
+        scoreTextGo.text = "Score: " + score.ToString();
     }
 }
