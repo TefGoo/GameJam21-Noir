@@ -11,7 +11,7 @@ public class MainMenuNoir : MonoBehaviour
     }
     public void Menu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Menu");
     }
 
     public void Credits()
