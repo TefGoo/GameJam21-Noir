@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverMenu; // Assign the UI menu object in the inspector
 
     public GameObject GameMenu; // Assign the UI menu object in the inspector
-
+    public GameObject Pause; // Assign the UI pause object in the inspector
     public AudioSource backgroundMusic; // Assign the background music audio source in the inspector
     public AudioSource gameOverSound; // Assign the Game Over sound audio source in the inspector
 
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         gameOverMenu.SetActive(true); // Activate the Game Over menu
         GameMenu.SetActive(false); // Deactivate the Pause menu                                 
         Time.timeScale = 0f; // Stop game time
-
+        Pause.SetActive(false);
         // Mute the background music and play the Game Over sound
         backgroundMusic.mute = true;
         gameOverSound.Play();
