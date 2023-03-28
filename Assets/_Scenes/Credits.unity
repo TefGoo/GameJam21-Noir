@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 984159243}
-  speed: 100
+  speed: 105
 --- !u!1 &984159243
 GameObject:
   m_ObjectHideFlags: 0

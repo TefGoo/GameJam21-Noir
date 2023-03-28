@@ -12,6 +12,8 @@ public class MainMenuNoir : MonoBehaviour
     public void Menu()
     {
         SceneManager.LoadScene("Menu");
+        // Unpause the game time
+        Time.timeScale = 1f;
     }
 
     public void Credits()
