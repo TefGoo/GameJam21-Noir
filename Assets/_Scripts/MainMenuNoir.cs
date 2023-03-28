@@ -26,5 +26,9 @@ public class MainMenuNoir : MonoBehaviour
         Debug.Log("Quitting Game...");
     }
 
+    public void HowTo()
+    {
+        SceneManager.LoadScene("Instructions");
+    }
 }
 
